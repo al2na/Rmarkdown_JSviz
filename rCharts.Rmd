@@ -1,0 +1,21 @@
+# Markdown example with knitr and rCharts
+===========================================
+This is an example file showing how to use rCharts with knitr/markdown. **rCharts** an R package to create, customize and publish interactive javascript visualizations from R.
+
+Let's first install it, it lives on github, not on CRAN yet.
+```{r,eval=FALSE}
+require(devtools)
+install_github('rCharts', 'ramnathv', ref = 'dev')
+```
+
+```{r, results='asis',out.width=400}
+require(rCharts)
+names(iris) = gsub("\\.", "", names(iris))
+rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = 'Species', type = 'point')
+```
+
+```{r, results='asis',}
+hair_eye_male <- subset(as.data.frame(HairEyeColor), Sex == "Male")
+n1 <- nPlot(Freq ~ Hair, group = "Eye", data = hair_eye_male, type = "multiBarChart")
+n1$print("chart3")
+```

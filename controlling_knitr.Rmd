@@ -1,0 +1,65 @@
+Controlling knitr output
+========================================================
+You can control what is output from code chunks by changing knitr options.
+options are described [here](http://yihui.name/knitr/options) in detail.
+
+Below some of the options I most use are shown.
+
+
+Code evaluation
+-------------------------
+`eval=FALSE` will turn the code evaluation off. The code still will be shown.
+  
+with `eval=TRUE`
+```{r}
+summary(cars)
+```
+with `eval=FALSE`
+```{r,eval=FALSE}
+summary(cars)
+```
+
+
+Supressing warnings
+-------------------------
+You can supress warnings in the code output by setting `warning=FALSE`
+
+`warning=TRUE`
+```{r}
+cor(c(1,1,1),c(1,1,1))
+```
+
+`warning=FALSE`
+```{r,warning=FALSE}
+cor(c(1,1,1),c(1,1,1))
+```
+
+Supressing messages
+-------------------------
+You can suppress messages from the code by setting `message=FALSE`
+
+`message=TRUE`
+```{r}
+library(GenomicRanges)
+```
+
+`message=FALSE`
+```{r,message=FALSE}
+library(GenomicRanges)
+```
+
+
+Evaluate code but hide figures
+-------------------------
+
+  
+```{r fig.width=7, fig.height=6}
+plot(cars)
+```
+
+You can also embed plots, for example:
+
+```{r fig.width=7, fig.height=6,fig.show='hide'}
+plot(cars)
+```
+

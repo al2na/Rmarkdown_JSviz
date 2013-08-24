@@ -1,0 +1,92 @@
+# Markdown example with knitr and googleVis
+===========================================
+This is a little Markdown example file. It uses googleVis package with knitr and markdown to produce interactive plots from **Google Visualization API**.
+
+In this case change the behaviour of plot.gvis, so that it presents only 
+the code for the chart rather than making a full web page.
+
+```{r setOptions, message=FALSE}
+library(googleVis)
+op <- options(gvis.plot.tag='chart')
+```
+The following plot statements will automatically return  the HTML
+required for the 'knitted' output. 
+ 
+
+## Pie chart
+example pie charts
+
+Let's take a look at the data:
+```{r}
+head(CityPopularity)
+```
+Now plot the pie chart
+```{r gvisPieChart, results='asis'}
+
+Pie <- gvisPieChart(CityPopularity,
+                    options=list(width=400, height=200))
+plot(Pie)
+```
+
+## Place two charts next to each other
+Example of a gvisGeoChart with gvisTable
+Let's have a look at the data first
+```{r}
+head(Exports)
+```
+
+```{r gvisMergeExample, results='asis', echo=FALSE}
+Geo <- gvisGeoChart(Exports, locationvar='Country', colorvar='Profit', 
+                    options=list(height=300, width=350)) 
+Tbl <- gvisTable(Exports, options=list(height=300, width=200))
+plot(gvisMerge(Geo, Tbl, horizontal=TRUE))
+``````
+
+ 
+ 
+## Scatter Plot
+Scatter plot example with googleVis
+```{r}
+head(women)
+```
+This time we will be able to edit the plot since we set `gvis.editor` argument.
+```{r ScatterPlotExample, results='asis', tidy=TRUE}
+
+Scatter1 <- gvisScatterChart(women,
+                             options=list(
+                               gvis.editor="edit",vAxis="{title:'weight (lbs)'}",
+                    hAxis="{title:'height (in)'}"))
+plot(Scatter1)
+```
+
+## Intensity Map
+
+```{r}
+df=data.frame(country=c("US", "GB", "BR"), val1=c(1,3,4), val2=c(23,12,32))
+head(df)
+```
+
+```{r IntensityExample, results='asis', tidy=TRUE}
+
+Intensity1 <- gvisIntensityMap(df, locationvar="country", numvar=c("val1", "val2"))
+plot(Intensity1)
+```
+
+
+## Combo chart
+```{r ComboExample, results='asis', tidy=FALSE}
+## Add the mean
+CityPopularity$Mean=mean(CityPopularity$Popularity)
+CC <- gvisComboChart(CityPopularity, xvar='City',
+          yvar=c('Mean', 'Popularity'),
+          options=list(seriesType='bars',
+                       width=450, height=300,
+                       title='City Popularity',
+                       series='{0: {type:\"line\"}}'))
+plot(CC)
+```
+
+```{r resetOptions}
+## Set options back to original options
+options(op)
+```
