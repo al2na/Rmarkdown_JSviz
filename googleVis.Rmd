@@ -90,3 +90,9 @@ plot(CC)
 ## Set options back to original options
 options(op)
 ```
+
+Session info
+-------------------------
+```{r }
+sessionInfo()
+```
