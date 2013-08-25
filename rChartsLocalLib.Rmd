@@ -8,43 +8,24 @@ require(devtools)
 install_github('rCharts', 'ramnathv', ref = 'dev')
 ```
 
-This part is mainly needed to import CSS files that sets up width/height for the plots. It imports CSS files and JavaScript libraries from online resources. This is slightly different from the original version that exists in rCharts. In this version, you can add additional CSS files with the "css" argument. "rNVD3.css" is required for proper plot width/height for plots from the NVD3 library.
-```{r setup, results='asis'}
-## load the package
-library(rCharts)
-
-## utility function to add required assets such as CSS and JS libraries
-add_lib_assets <- function(lib, cdn = F,css=NULL) {
-    assets = get_assets(get_lib(lib), cdn = cdn)
-    if(!is.null(css)){assets$css=c(assets$css,css)}
-    styles <- lapply(assets$css, function(style) {
-        sprintf("<link rel='stylesheet' href=%s>", style)
-    })
-
-    scripts <- lapply(assets$jshead, function(script) {
-        sprintf("<script type='text/javascript' src=%s></script>", script)
-    })
-    cat(paste(c(styles, scripts), collapse = "\n"))
-}
-
-# get assets from online repositories 
-add_lib_assets("NVD3",cdn=TRUE,css="http://rawgithub.com/ramnathv/rCharts/master/inst/libraries/nvd3/css/rNVD3.css") 
-add_lib_assets("Polycharts",cdn=TRUE)
-```
 
 ## Scatter plot using Polycharts
-The chunk below shows how to produce a simple scatter plot using Polycharts.
-```{r, results='asis'}
+
+```{r, results='asis',out.width=400}
+require(rCharts)
 
 names(iris) = gsub("\\.", "", names(iris))
+add_lib_assets("Polycharts",cdn=TRUE)
 r1<-rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = 'Species', type = 'point')
 r1$print("polyScatter")
 ```
 
 ## Multi barchart using NVD3
 ```{r nvd3mbar, results='asis',comment=NA}
+add_lib_assets("NVD3") # get assets from online repositories 
 hair_eye_male <- subset(as.data.frame(HairEyeColor), Sex == "Male")
 n1 <- nPlot(Freq ~ Hair, group = "Eye", data = hair_eye_male, type = "multiBarChart")
+n1$chart(height=200) # change plot height Chrome/FF doesn't automatically get plot height but safari does
 n1$print("nvd3mbar")
 ```
 
@@ -58,6 +39,7 @@ sepal <- iris[,c(1:2,5)]
 n2 <- nPlot(Sepal.Length ~ Sepal.Width, data =sepal, type = "scatterChart",group="Species")
 n2$xAxis(axisLabel="Sepal.Width") # add x axis label
 n2$yAxis(axisLabel="Sepal.Length")
+n2$chart(height=400) # change plot height Chrome/FF doesn't automatically get plot height but safari does
 n2$print("nvd3Scatter")
 
 ```
@@ -80,6 +62,7 @@ n3 <- nPlot(counts ~ mid, data=data,type = "multiBarChart",group="Species")
 n3$xAxis(axisLabel="Sepal.Width")
 n3$yAxis(axisLabel="counts")
 n3$chart(color = c('red', 'blue', 'green'))
+n2$chart(height=400) # change plot height Chrome/FF doesn't automatically get plot height but safari does
 n3$print("nvd3Hist")
 
 ```

@@ -10,52 +10,27 @@ install_github("rCharts", "ramnathv", ref = "dev")
 ```
 
 
-This part is mainly needed to import CSS files that sets up width/height for the plots. It imports CSS files and JavaScript libraries from online resources. This is slightly different from the original version that exists in rCharts. In this version, you can add additional CSS files with the "css" argument. "rNVD3.css" is required for proper plot width/height for plots from the NVD3 library.
-
-```r
-## load the package
-library(rCharts)
-
-## utility function to add required assets such as CSS and JS libraries
-add_lib_assets <- function(lib, cdn = F, css = NULL) {
-    assets = get_assets(get_lib(lib), cdn = cdn)
-    if (!is.null(css)) {
-        assets$css = c(assets$css, css)
-    }
-    styles <- lapply(assets$css, function(style) {
-        sprintf("<link rel='stylesheet' href=%s>", style)
-    })
-    
-    scripts <- lapply(assets$jshead, function(script) {
-        sprintf("<script type='text/javascript' src=%s></script>", script)
-    })
-    cat(paste(c(styles, scripts), collapse = "\n"))
-}
-
-# get assets from online repositories
-add_lib_assets("NVD3", cdn = TRUE, css = "http://rawgithub.com/ramnathv/rCharts/master/inst/libraries/nvd3/css/rNVD3.css")
-```
-
-<link rel='stylesheet' href=http://nvd3.org/src/nv.d3.css>
-<link rel='stylesheet' href=http://rawgithub.com/ramnathv/rCharts/master/inst/libraries/nvd3/css/rNVD3.css>
-<script type='text/javascript' src=http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js></script>
-<script type='text/javascript' src=http://d3js.org/d3.v2.min.js></script>
-<script type='text/javascript' src=http://nvd3.org/nv.d3.js></script>
-<script type='text/javascript' src=http://nvd3.org/lib/fisheye.js></script>
-
-```r
-add_lib_assets("Polycharts", cdn = TRUE)
-```
-
-<script type='text/javascript' src=https://rawgithub.com/Polychart/polychart2/develop/polychart2.standalone.js></script>
-
 
 ## Scatter plot using Polycharts
-The chunk below shows how to produce a simple scatter plot using Polycharts.
+
+
+```r
+require(rCharts)
+```
+
+```
+## Loading required package: rCharts
+```
 
 ```r
 
 names(iris) = gsub("\\.", "", names(iris))
+add_lib_assets("Polycharts", cdn = TRUE)
+```
+
+[1] "<script type='text/javascript' src=https://rawgithub.com/Polychart/polychart2/develop/polychart2.standalone.js></script>"
+
+```r
 r1 <- rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = "Species", 
     type = "point")
 r1$print("polyScatter")
@@ -102,8 +77,15 @@ r1$print("polyScatter")
 ## Multi barchart using NVD3
 
 ```r
+add_lib_assets("NVD3")  # get assets from online repositories 
+```
+
+[1] "<link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/css/nv.d3.css>\n<link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/css/rNVD3.css>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/jquery-1.8.2.min.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/d3.v3.min.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/nv.d3.min-new.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/fisheye.js></script>"
+
+```r
 hair_eye_male <- subset(as.data.frame(HairEyeColor), Sex == "Male")
 n1 <- nPlot(Freq ~ Hair, group = "Eye", data = hair_eye_male, type = "multiBarChart")
+n1$chart(height = 200)  # change plot height Chrome/FF doesn't automatically get plot height but safari does
 n1$print("nvd3mbar")
 ```
 
@@ -236,7 +218,8 @@ n1$print("nvd3mbar")
           .width(opts.width)
           .height(opts.height)
          
-        
+        chart
+  .height(   200)
           
         
 
@@ -269,6 +252,7 @@ n2 <- nPlot(Sepal.Length ~ Sepal.Width, data = sepal, type = "scatterChart",
     group = "Species")
 n2$xAxis(axisLabel = "Sepal.Width")  # add x axis label
 n2$yAxis(axisLabel = "Sepal.Length")
+n2$chart(height = 400)  # change plot height Chrome/FF doesn't automatically get plot height but safari does
 n2$print("nvd3Scatter")
 ```
 
@@ -1055,7 +1039,8 @@ n2$print("nvd3Scatter")
           .width(opts.width)
           .height(opts.height)
          
-        
+        chart
+  .height(   400)
           
         chart.xAxis
   .axisLabel("Sepal.Width")
@@ -1111,6 +1096,7 @@ n3 <- nPlot(counts ~ mid, data = data, type = "multiBarChart", group = "Species"
 n3$xAxis(axisLabel = "Sepal.Width")
 n3$yAxis(axisLabel = "counts")
 n3$chart(color = c("red", "blue", "green"))
+n2$chart(height = 400)  # change plot height Chrome/FF doesn't automatically get plot height but safari does
 n3$print("nvd3Hist")
 ```
 

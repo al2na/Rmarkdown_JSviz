@@ -190,22 +190,54 @@ hljs.initHighlightingOnLoad();
 install_github(&quot;rCharts&quot;, &quot;ramnathv&quot;, ref = &quot;dev&quot;)
 </code></pre>
 
+<p>This part is mainly needed to import CSS files that sets up width/height for the plots. It imports CSS files and JavaScript libraries from online resources. This is slightly different from the original version that exists in rCharts. In this version, you can add additional CSS files with the &ldquo;css&rdquo; argument. &ldquo;rNVD3.css&rdquo; is required for proper plot width/height for plots from the NVD3 library.</p>
+
+<pre><code class="r">## load the package
+library(rCharts)
+
+## utility function to add required assets such as CSS and JS libraries
+add_lib_assets &lt;- function(lib, cdn = F, css = NULL) {
+    assets = get_assets(get_lib(lib), cdn = cdn)
+    if (!is.null(css)) {
+        assets$css = c(assets$css, css)
+    }
+    styles &lt;- lapply(assets$css, function(style) {
+        sprintf(&quot;&lt;link rel=&#39;stylesheet&#39; href=%s&gt;&quot;, style)
+    })
+
+    scripts &lt;- lapply(assets$jshead, function(script) {
+        sprintf(&quot;&lt;script type=&#39;text/javascript&#39; src=%s&gt;&lt;/script&gt;&quot;, script)
+    })
+    cat(paste(c(styles, scripts), collapse = &quot;\n&quot;))
+}
+
+# get assets from online repositories
+add_lib_assets(&quot;NVD3&quot;, cdn = TRUE, css = &quot;http://rawgithub.com/ramnathv/rCharts/master/inst/libraries/nvd3/css/rNVD3.css&quot;)
+</code></pre>
+
+<p><link rel='stylesheet' href=http://nvd3.org/src/nv.d3.css>
+<link rel='stylesheet' href=http://rawgithub.com/ramnathv/rCharts/master/inst/libraries/nvd3/css/rNVD3.css></p>
+
+<script type='text/javascript' src=http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js></script>
+
+<script type='text/javascript' src=http://d3js.org/d3.v2.min.js></script>
+
+<script type='text/javascript' src=http://nvd3.org/nv.d3.js></script>
+
+<script type='text/javascript' src=http://nvd3.org/lib/fisheye.js></script>
+
+<pre><code class="r">add_lib_assets(&quot;Polycharts&quot;, cdn = TRUE)
+</code></pre>
+
+<script type='text/javascript' src=https://rawgithub.com/Polychart/polychart2/develop/polychart2.standalone.js></script>
+
 <h2>Scatter plot using Polycharts</h2>
 
-<pre><code class="r">require(rCharts)
-</code></pre>
-
-<pre><code>## Loading required package: rCharts
-</code></pre>
+<p>The chunk below shows how to produce a simple scatter plot using Polycharts.</p>
 
 <pre><code class="r">
 names(iris) = gsub(&quot;\\.&quot;, &quot;&quot;, names(iris))
-add_lib_assets(&quot;Polycharts&quot;, cdn = TRUE)
-</code></pre>
-
-<p>[1] &ldquo;<script type='text/javascript' src=https://rawgithub.com/Polychart/polychart2/develop/polychart2.standalone.js></script>&rdquo;</p>
-
-<pre><code class="r">r1 &lt;- rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = &quot;Species&quot;, 
+r1 &lt;- rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = &quot;Species&quot;, 
     type = &quot;point&quot;)
 r1$print(&quot;polyScatter&quot;)
 </code></pre>
@@ -248,11 +280,6 @@ r1$print(&quot;polyScatter&quot;)
 </script>
 
 <h2>Multi barchart using NVD3</h2>
-
-<pre><code class="r">add_lib_assets(&quot;NVD3&quot;, cdn = TRUE)
-</code></pre>
-
-<p>[1] &ldquo;<link rel='stylesheet' href=http://nvd3.org/src/nv.d3.css>\n<script type='text/javascript' src=http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js></script>\n<script type='text/javascript' src=http://d3js.org/d3.v2.min.js></script>\n<script type='text/javascript' src=http://nvd3.org/nv.d3.js></script>\n<script type='text/javascript' src=http://nvd3.org/lib/fisheye.js></script>&rdquo;</p>
 
 <pre><code class="r">hair_eye_male &lt;- subset(as.data.frame(HairEyeColor), Sex == &quot;Male&quot;)
 n1 &lt;- nPlot(Freq ~ Hair, group = &quot;Eye&quot;, data = hair_eye_male, type = &quot;multiBarChart&quot;)
@@ -417,7 +444,7 @@ sepal &lt;- iris[, c(1:2, 5)]
 
 n2 &lt;- nPlot(Sepal.Length ~ Sepal.Width, data = sepal, type = &quot;scatterChart&quot;, 
     group = &quot;Species&quot;)
-n2$xAxis(axisLabel = &quot;Sepal.Width&quot;)
+n2$xAxis(axisLabel = &quot;Sepal.Width&quot;)  # add x axis label
 n2$yAxis(axisLabel = &quot;Sepal.Length&quot;)
 n2$print(&quot;nvd3Scatter&quot;)
 </code></pre>
@@ -1253,11 +1280,11 @@ head(data)
 
 <p>We got the data in the right format, now let&#39;s plot the histogram with <strong>multiBarChart</strong></p>
 
-<pre><code class="r">n2 &lt;- nPlot(counts ~ mid, data = data, type = &quot;multiBarChart&quot;, group = &quot;Species&quot;)
-n2$xAxis(axisLabel = &quot;Sepal.Width&quot;)
-n2$yAxis(axisLabel = &quot;counts&quot;)
-n2$chart(color = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;))
-n2$print(&quot;nvd3Hist&quot;)
+<pre><code class="r">n3 &lt;- nPlot(counts ~ mid, data = data, type = &quot;multiBarChart&quot;, group = &quot;Species&quot;)
+n3$xAxis(axisLabel = &quot;Sepal.Width&quot;)
+n3$yAxis(axisLabel = &quot;counts&quot;)
+n3$chart(color = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;))
+n3$print(&quot;nvd3Hist&quot;)
 </code></pre>
 
 <div id = 'nvd3Hist' class = 'rChart nvd3'></div>
