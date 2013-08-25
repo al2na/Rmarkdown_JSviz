@@ -15,7 +15,9 @@ install_github('rCharts', 'ramnathv', ref = 'dev')
 require(rCharts)
 
 names(iris) = gsub("\\.", "", names(iris))
-rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = 'Species', type = 'point')
+add_lib_assets("Polycharts",cdn=TRUE)
+r1<-rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = 'Species', type = 'point')
+r1$print("polyScatter")
 ```
 
 ## Multi barchart using NVD3
