@@ -32,8 +32,8 @@ add_lib_assets("NVD3",cdn=TRUE,css="http://rawgithub.com/ramnathv/rCharts/master
 add_lib_assets("Polycharts",cdn=TRUE)
 ```
 
-## Scatter plot using Polycharts
-The chunk below shows how to produce a simple scatter plot using Polycharts.
+## Scatter plot using Polychart
+The chunk below shows how to produce a simple scatter plot using Polychart library.
 ```{r, results='asis'}
 
 names(iris) = gsub("\\.", "", names(iris))

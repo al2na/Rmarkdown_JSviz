@@ -50,8 +50,8 @@ add_lib_assets("Polycharts", cdn = TRUE)
 <script type='text/javascript' src=https://rawgithub.com/Polychart/polychart2/develop/polychart2.standalone.js></script>
 
 
-## Scatter plot using Polycharts
-The chunk below shows how to produce a simple scatter plot using Polycharts.
+## Scatter plot using Polychart
+The chunk below shows how to produce a simple scatter plot using Polychart library.
 
 ```r
 
