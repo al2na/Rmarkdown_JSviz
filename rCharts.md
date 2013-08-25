@@ -33,11 +33,11 @@ add_lib_assets <- function(lib, cdn = F, css = NULL) {
 }
 
 # get assets from online repositories
-add_lib_assets("NVD3", cdn = TRUE, css = "http://rawgithub.com/ramnathv/rCharts/master/inst/libraries/nvd3/css/rNVD3.css")
+# add_lib_assets('NVD3',cdn=TRUE,css='http://rawgithub.com/ramnathv/rCharts/master/inst/libraries/nvd3/css/rNVD3.css')
+add_lib_assets("NVD3", cdn = TRUE)
 ```
 
 <link rel='stylesheet' href=http://nvd3.org/src/nv.d3.css>
-<link rel='stylesheet' href=http://rawgithub.com/ramnathv/rCharts/master/inst/libraries/nvd3/css/rNVD3.css>
 <script type='text/javascript' src=http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js></script>
 <script type='text/javascript' src=http://d3js.org/d3.v2.min.js></script>
 <script type='text/javascript' src=http://nvd3.org/nv.d3.js></script>

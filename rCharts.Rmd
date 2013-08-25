@@ -28,7 +28,8 @@ add_lib_assets <- function(lib, cdn = F,css=NULL) {
 }
 
 # get assets from online repositories 
-add_lib_assets("NVD3",cdn=TRUE,css="http://rawgithub.com/ramnathv/rCharts/master/inst/libraries/nvd3/css/rNVD3.css") 
+#add_lib_assets("NVD3",cdn=TRUE,css="http://rawgithub.com/ramnathv/rCharts/master/inst/libraries/nvd3/css/rNVD3.css") 
+add_lib_assets("NVD3",cdn=TRUE)
 add_lib_assets("Polycharts",cdn=TRUE)
 ```
 
