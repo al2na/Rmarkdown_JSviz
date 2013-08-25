@@ -2,7 +2,7 @@
 ===========================================
 This is an example file showing how to use rCharts with knitr/markdown. **rCharts** an R package to create, customize and publish interactive javascript visualizations from R.
 
-Let's first install it, it lives on github, not on CRAN yet.
+Let's first install it. It lives on github, not on CRAN yet.
 ```{r,eval=FALSE}
 require(devtools)
 install_github('rCharts', 'ramnathv', ref = 'dev')
