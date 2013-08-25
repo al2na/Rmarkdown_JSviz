@@ -9,11 +9,11 @@ install_github('rCharts', 'ramnathv', ref = 'dev')
 ```
 
 
-## Scatter plot using polychart
+## Scatter plot using Polycharts
 
 ```{r, results='asis',out.width=400}
 require(rCharts)
-add_lib_assets("Polycharts")
+
 names(iris) = gsub("\\.", "", names(iris))
 rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = 'Species', type = 'point')
 ```
@@ -34,7 +34,28 @@ data(iris)
 sepal <- iris[,c(1:2,5)]
 
 n2 <- nPlot(Sepal.Length ~ Sepal.Width, data =sepal, type = "scatterChart",group="Species")
-n2$print("vd3Scatter")
+n2$xAxis(axisLabel="Sepal.Width")
+n2$yAxis(axisLabel="Sepal.Length")
+n2$print("nvd3Scatter")
 
 ```
 
+## Histogram Plot from NVD3
+Let's try to plot a multihistogram with rCharts using NVD3 library. We need to first calculate break points and mid points for the histogram bars and produce a single data frame that has the counts, mid-points for bars and group information.
+```{r nvd3Hist1}
+data(iris)
+sepalw <- iris[,c(1,5)]
+hst=hist(sepalw[,1],plot=FALSE,breaks=20)
+
+data=by(sepalw,sepalw$Species,function(x) data.frame(mid=hst$mids,counts=hist(x[,1],breaks=hst$breaks,plot=FALSE)$counts,Species=rep(x[1,2],length(hst$breaks)-1) )  )
+data=do.call("rbind",data)
+head(data)
+```
+We got the data in the right format, now let's plot the histogram with **multiBarChart**
+```{r nvd3Scatter2, results='asis',comment=NA}
+n2 <- nPlot(counts ~ mid, data=data,type = "multiBarChart",group="Species")
+n2$xAxis(axisLabel="Sepal.Width")
+n2$yAxis(axisLabel="counts")
+n2$print("nvd3Hist")
+
+```

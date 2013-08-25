@@ -11,7 +11,7 @@ install_github("rCharts", "ramnathv", ref = "dev")
 
 
 
-## Scatter plot using polychart
+## Scatter plot using Polycharts
 
 
 ```r
@@ -23,12 +23,7 @@ require(rCharts)
 ```
 
 ```r
-add_lib_assets("Polycharts")
-```
 
-[1] "<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/Polycharts/js/polychart2.standalone.js></script>"
-
-```r
 names(iris) = gsub("\\.", "", names(iris))
 rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = "Species", type = "point")
 ```
@@ -210,25 +205,27 @@ sepal <- iris[, c(1:2, 5)]
 
 n2 <- nPlot(Sepal.Length ~ Sepal.Width, data = sepal, type = "scatterChart", 
     group = "Species")
-n2$print("vd3Scatter")
+n2$xAxis(axisLabel = "Sepal.Width")
+n2$yAxis(axisLabel = "Sepal.Length")
+n2$print("nvd3Scatter")
 ```
 
 
-<div id = 'vd3Scatter' class = 'rChart nvd3'></div>
+<div id = 'nvd3Scatter' class = 'rChart nvd3'></div>
 <script type='text/javascript'>
  $(document).ready(function(){
-      drawvd3Scatter()
+      drawnvd3Scatter()
     });
-    function drawvd3Scatter(){  
+    function drawnvd3Scatter(){  
       var opts = {
- "dom": "vd3Scatter",
+ "dom": "nvd3Scatter",
 "width":    800,
 "height":    400,
 "x": "Sepal.Width",
 "y": "Sepal.Length",
 "type": "scatterChart",
 "group": "Species",
-"id": "vd3Scatter" 
+"id": "nvd3Scatter" 
 },
         data = [
  {
@@ -998,11 +995,13 @@ n2$print("vd3Scatter")
          
         
           
-        
+        chart.xAxis
+  .axisLabel("Sepal.Width")
 
         
         
-        
+        chart.yAxis
+  .axisLabel("Sepal.Length")
       
        d3.select("#" + opts.id)
         .append('svg')
@@ -1016,4 +1015,378 @@ n2$print("vd3Scatter")
     };
 </script>
 
+
+## Histogram Plot from NVD3
+Let's try to plot a multihistogram with rCharts using NVD3 library. We need to first calculate break points and mid points for the histogram bars and produce a single data frame that has the counts, mid-points for bars and group information.
+
+```r
+data(iris)
+sepalw <- iris[, c(1, 5)]
+hst = hist(sepalw[, 1], plot = FALSE, breaks = 20)
+
+data = by(sepalw, sepalw$Species, function(x) data.frame(mid = hst$mids, counts = hist(x[, 
+    1], breaks = hst$breaks, plot = FALSE)$counts, Species = rep(x[1, 2], length(hst$breaks) - 
+    1)))
+data = do.call("rbind", data)
+head(data)
+```
+
+```
+##          mid counts Species
+## setosa.1 4.3      4  setosa
+## setosa.2 4.5      5  setosa
+## setosa.3 4.7      7  setosa
+## setosa.4 4.9     12  setosa
+## setosa.5 5.1     11  setosa
+## setosa.6 5.3      6  setosa
+```
+
+We got the data in the right format, now let's plot the histogram with **multiBarChart**
+
+```r
+n2 <- nPlot(counts ~ mid, data = data, type = "multiBarChart", group = "Species")
+n2$xAxis(axisLabel = "Sepal.Width")
+n2$yAxis(axisLabel = "counts")
+n2$print("nvd3Hist")
+```
+
+
+<div id = 'nvd3Hist' class = 'rChart nvd3'></div>
+<script type='text/javascript'>
+ $(document).ready(function(){
+      drawnvd3Hist()
+    });
+    function drawnvd3Hist(){  
+      var opts = {
+ "dom": "nvd3Hist",
+"width":    800,
+"height":    400,
+"x": "mid",
+"y": "counts",
+"type": "multiBarChart",
+"group": "Species",
+"id": "nvd3Hist" 
+},
+        data = [
+ {
+ "mid":    4.3,
+"counts": 4,
+"Species": "setosa" 
+},
+{
+ "mid":    4.5,
+"counts": 5,
+"Species": "setosa" 
+},
+{
+ "mid":    4.7,
+"counts": 7,
+"Species": "setosa" 
+},
+{
+ "mid":    4.9,
+"counts": 12,
+"Species": "setosa" 
+},
+{
+ "mid":    5.1,
+"counts": 11,
+"Species": "setosa" 
+},
+{
+ "mid":    5.3,
+"counts": 6,
+"Species": "setosa" 
+},
+{
+ "mid":    5.5,
+"counts": 2,
+"Species": "setosa" 
+},
+{
+ "mid":    5.7,
+"counts": 3,
+"Species": "setosa" 
+},
+{
+ "mid":    5.9,
+"counts": 0,
+"Species": "setosa" 
+},
+{
+ "mid":    6.1,
+"counts": 0,
+"Species": "setosa" 
+},
+{
+ "mid":    6.3,
+"counts": 0,
+"Species": "setosa" 
+},
+{
+ "mid":    6.5,
+"counts": 0,
+"Species": "setosa" 
+},
+{
+ "mid":    6.7,
+"counts": 0,
+"Species": "setosa" 
+},
+{
+ "mid":    6.9,
+"counts": 0,
+"Species": "setosa" 
+},
+{
+ "mid":    7.1,
+"counts": 0,
+"Species": "setosa" 
+},
+{
+ "mid":    7.3,
+"counts": 0,
+"Species": "setosa" 
+},
+{
+ "mid":    7.5,
+"counts": 0,
+"Species": "setosa" 
+},
+{
+ "mid":    7.7,
+"counts": 0,
+"Species": "setosa" 
+},
+{
+ "mid":    7.9,
+"counts": 0,
+"Species": "setosa" 
+},
+{
+ "mid":    4.3,
+"counts": 0,
+"Species": "versicolor" 
+},
+{
+ "mid":    4.5,
+"counts": 0,
+"Species": "versicolor" 
+},
+{
+ "mid":    4.7,
+"counts": 0,
+"Species": "versicolor" 
+},
+{
+ "mid":    4.9,
+"counts": 3,
+"Species": "versicolor" 
+},
+{
+ "mid":    5.1,
+"counts": 2,
+"Species": "versicolor" 
+},
+{
+ "mid":    5.3,
+"counts": 1,
+"Species": "versicolor" 
+},
+{
+ "mid":    5.5,
+"counts": 10,
+"Species": "versicolor" 
+},
+{
+ "mid":    5.7,
+"counts": 8,
+"Species": "versicolor" 
+},
+{
+ "mid":    5.9,
+"counts": 6,
+"Species": "versicolor" 
+},
+{
+ "mid":    6.1,
+"counts": 6,
+"Species": "versicolor" 
+},
+{
+ "mid":    6.3,
+"counts": 5,
+"Species": "versicolor" 
+},
+{
+ "mid":    6.5,
+"counts": 3,
+"Species": "versicolor" 
+},
+{
+ "mid":    6.7,
+"counts": 4,
+"Species": "versicolor" 
+},
+{
+ "mid":    6.9,
+"counts": 2,
+"Species": "versicolor" 
+},
+{
+ "mid":    7.1,
+"counts": 0,
+"Species": "versicolor" 
+},
+{
+ "mid":    7.3,
+"counts": 0,
+"Species": "versicolor" 
+},
+{
+ "mid":    7.5,
+"counts": 0,
+"Species": "versicolor" 
+},
+{
+ "mid":    7.7,
+"counts": 0,
+"Species": "versicolor" 
+},
+{
+ "mid":    7.9,
+"counts": 0,
+"Species": "versicolor" 
+},
+{
+ "mid":    4.3,
+"counts": 0,
+"Species": "virginica" 
+},
+{
+ "mid":    4.5,
+"counts": 0,
+"Species": "virginica" 
+},
+{
+ "mid":    4.7,
+"counts": 0,
+"Species": "virginica" 
+},
+{
+ "mid":    4.9,
+"counts": 1,
+"Species": "virginica" 
+},
+{
+ "mid":    5.1,
+"counts": 0,
+"Species": "virginica" 
+},
+{
+ "mid":    5.3,
+"counts": 0,
+"Species": "virginica" 
+},
+{
+ "mid":    5.5,
+"counts": 1,
+"Species": "virginica" 
+},
+{
+ "mid":    5.7,
+"counts": 4,
+"Species": "virginica" 
+},
+{
+ "mid":    5.9,
+"counts": 3,
+"Species": "virginica" 
+},
+{
+ "mid":    6.1,
+"counts": 4,
+"Species": "virginica" 
+},
+{
+ "mid":    6.3,
+"counts": 11,
+"Species": "virginica" 
+},
+{
+ "mid":    6.5,
+"counts": 4,
+"Species": "virginica" 
+},
+{
+ "mid":    6.7,
+"counts": 7,
+"Species": "virginica" 
+},
+{
+ "mid":    6.9,
+"counts": 3,
+"Species": "virginica" 
+},
+{
+ "mid":    7.1,
+"counts": 4,
+"Species": "virginica" 
+},
+{
+ "mid":    7.3,
+"counts": 2,
+"Species": "virginica" 
+},
+{
+ "mid":    7.5,
+"counts": 1,
+"Species": "virginica" 
+},
+{
+ "mid":    7.7,
+"counts": 4,
+"Species": "virginica" 
+},
+{
+ "mid":    7.9,
+"counts": 1,
+"Species": "virginica" 
+} 
+]
+  
+      var data = d3.nest()
+        .key(function(d){
+          return opts.group === undefined ? 'main' : d[opts.group]
+        })
+        .entries(data)
+      
+      nv.addGraph(function() {
+        var chart = nv.models[opts.type]()
+          .x(function(d) { return d[opts.x] })
+          .y(function(d) { return d[opts.y] })
+          .width(opts.width)
+          .height(opts.height)
+         
+        
+          
+        chart.xAxis
+  .axisLabel("Sepal.Width")
+
+        
+        
+        chart.yAxis
+  .axisLabel("counts")
+      
+       d3.select("#" + opts.id)
+        .append('svg')
+        .datum(data)
+        .transition().duration(500)
+        .call(chart);
+
+       nv.utils.windowResize(chart.update);
+       return chart;
+      });
+    };
+</script>
 
