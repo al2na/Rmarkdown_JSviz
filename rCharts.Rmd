@@ -83,3 +83,9 @@ n3$chart(color = c('red', 'blue', 'green'))
 n3$print("nvd3Hist")
 
 ```
+
+Session info
+-------------------------
+```{r }
+sessionInfo()
+```
