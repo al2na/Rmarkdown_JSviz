@@ -43,7 +43,7 @@ You can suppress messages from the code by setting `message=FALSE`
 library(GenomicRanges)
 ```
 
-`message=FALSE`
+`message=FALSE` for the R chunk.
 ```{r,message=FALSE}
 library(GenomicRanges)
 ```
@@ -57,9 +57,10 @@ Evaluate code but hide figures
 plot(cars)
 ```
 
-You can also embed plots, for example:
+You can also execute code but hide the figures with `fig.show='hide'` option for the R chunk.
 
 ```{r fig.width=7, fig.height=6,fig.show='hide'}
 plot(cars)
+summary(cars)
 ```
 
