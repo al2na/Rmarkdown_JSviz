@@ -1256,6 +1256,7 @@ head(data)
 <pre><code class="r">n2 &lt;- nPlot(counts ~ mid, data = data, type = &quot;multiBarChart&quot;, group = &quot;Species&quot;)
 n2$xAxis(axisLabel = &quot;Sepal.Width&quot;)
 n2$yAxis(axisLabel = &quot;counts&quot;)
+n2$chart(color = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;))
 n2$print(&quot;nvd3Hist&quot;)
 </code></pre>
 
@@ -1577,7 +1578,8 @@ n2$print(&quot;nvd3Hist&quot;)
           .width(opts.width)
           .height(opts.height)
          
-        
+        chart
+  .color([ "red", "blue", "green" ])
           
         chart.xAxis
   .axisLabel("Sepal.Width")

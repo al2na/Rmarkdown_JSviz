@@ -1090,6 +1090,7 @@ We got the data in the right format, now let's plot the histogram with **multiBa
 n2 <- nPlot(counts ~ mid, data = data, type = "multiBarChart", group = "Species")
 n2$xAxis(axisLabel = "Sepal.Width")
 n2$yAxis(axisLabel = "counts")
+n2$chart(color = c("red", "blue", "green"))
 n2$print("nvd3Hist")
 ```
 
@@ -1411,7 +1412,8 @@ n2$print("nvd3Hist")
           .width(opts.width)
           .height(opts.height)
          
-        
+        chart
+  .color([ "red", "blue", "green" ])
           
         chart.xAxis
   .axisLabel("Sepal.Width")
