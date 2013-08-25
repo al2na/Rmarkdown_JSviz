@@ -39,10 +39,10 @@ rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = "Species", type =
 ## Multi barchart using NVD3
 
 ```r
-add_lib_assets("NVD3")
+add_lib_assets("NVD3", cdn = TRUE)
 ```
 
-[1] "<link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/css/nv.d3.css>\n<link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/css/rNVD3.css>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/jquery-1.8.2.min.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/d3.v3.min.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/nv.d3.min-new.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/fisheye.js></script>"
+[1] "<link rel='stylesheet' href=http://nvd3.org/src/nv.d3.css>\n<script type='text/javascript' src=http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js></script>\n<script type='text/javascript' src=http://d3js.org/d3.v2.min.js></script>\n<script type='text/javascript' src=http://nvd3.org/nv.d3.js></script>\n<script type='text/javascript' src=http://nvd3.org/lib/fisheye.js></script>"
 
 ```r
 hair_eye_male <- subset(as.data.frame(HairEyeColor), Sex == "Male")
@@ -207,12 +207,7 @@ Scatter plot example with rCharts using NVD3 JS library
 ```r
 data(iris)
 sepal <- iris[, c(1:2, 5)]
-add_lib_assets("NVD3")
-```
 
-[1] "<link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/css/nv.d3.css>\n<link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/css/rNVD3.css>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/jquery-1.8.2.min.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/d3.v3.min.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/nv.d3.min-new.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/fisheye.js></script>"
-
-```r
 n2 <- nPlot(Sepal.Length ~ Sepal.Width, data = sepal, type = "scatterChart", 
     group = "Species")
 n2$print("vd3Scatter")

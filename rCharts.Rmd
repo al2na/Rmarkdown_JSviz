@@ -20,7 +20,7 @@ rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = 'Species', type =
 
 ## Multi barchart using NVD3
 ```{r nvd3mbar, results='asis',comment=NA}
-add_lib_assets("NVD3")
+add_lib_assets("NVD3",cdn=TRUE)
 hair_eye_male <- subset(as.data.frame(HairEyeColor), Sex == "Male")
 n1 <- nPlot(Freq ~ Hair, group = "Eye", data = hair_eye_male, type = "multiBarChart")
 n1$print("nvd3mbar")
@@ -32,7 +32,7 @@ Scatter plot example with rCharts using NVD3 JS library
 ```{r nvd3Scatter, results='asis',comment=NA}
 data(iris)
 sepal <- iris[,c(1:2,5)]
-add_lib_assets("NVD3")
+
 n2 <- nPlot(Sepal.Length ~ Sepal.Width, data =sepal, type = "scatterChart",group="Species")
 n2$print("vd3Scatter")
 

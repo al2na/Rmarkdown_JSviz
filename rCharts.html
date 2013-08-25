@@ -211,10 +211,10 @@ rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = &quot;Species&quo
 
 <h2>Multi barchart using NVD3</h2>
 
-<pre><code class="r">add_lib_assets(&quot;NVD3&quot;)
+<pre><code class="r">add_lib_assets(&quot;NVD3&quot;, cdn = TRUE)
 </code></pre>
 
-<p>[1] &ldquo;<link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/css/nv.d3.css>\n<link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/css/rNVD3.css>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/jquery-1.8.2.min.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/d3.v3.min.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/nv.d3.min-new.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/fisheye.js></script>&rdquo;</p>
+<p>[1] &ldquo;<link rel='stylesheet' href=http://nvd3.org/src/nv.d3.css>\n<script type='text/javascript' src=http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js></script>\n<script type='text/javascript' src=http://d3js.org/d3.v2.min.js></script>\n<script type='text/javascript' src=http://nvd3.org/nv.d3.js></script>\n<script type='text/javascript' src=http://nvd3.org/lib/fisheye.js></script>&rdquo;</p>
 
 <pre><code class="r">hair_eye_male &lt;- subset(as.data.frame(HairEyeColor), Sex == &quot;Male&quot;)
 n1 &lt;- nPlot(Freq ~ Hair, group = &quot;Eye&quot;, data = hair_eye_male, type = &quot;multiBarChart&quot;)
@@ -376,12 +376,8 @@ n1$print(&quot;nvd3mbar&quot;)
 
 <pre><code class="r">data(iris)
 sepal &lt;- iris[, c(1:2, 5)]
-add_lib_assets(&quot;NVD3&quot;)
-</code></pre>
 
-<p>[1] &ldquo;<link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/css/nv.d3.css>\n<link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/css/rNVD3.css>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/jquery-1.8.2.min.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/d3.v3.min.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/nv.d3.min-new.js></script>\n<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.0/Resources/library/rCharts/libraries/NVD3/js/fisheye.js></script>&rdquo;</p>
-
-<pre><code class="r">n2 &lt;- nPlot(Sepal.Length ~ Sepal.Width, data = sepal, type = &quot;scatterChart&quot;, 
+n2 &lt;- nPlot(Sepal.Length ~ Sepal.Width, data = sepal, type = &quot;scatterChart&quot;, 
     group = &quot;Species&quot;)
 n2$print(&quot;vd3Scatter&quot;)
 </code></pre>
