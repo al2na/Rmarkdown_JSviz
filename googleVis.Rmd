@@ -35,7 +35,7 @@ Let's have a look at the data first
 head(Exports)
 ```
 
-```{r gvisMergeExample, results='asis', echo=FALSE}
+```{r gvisMergeExample, results='asis'}
 Geo <- gvisGeoChart(Exports, locationvar='Country', colorvar='Profit', 
                     options=list(height=300, width=350)) 
 Tbl <- gvisTable(Exports, options=list(height=300, width=200))

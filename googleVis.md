@@ -43,14 +43,14 @@ plot(Pie)
 ```
 
 <!-- PieChart generated in R 3.0.0 by googleVis 0.4.3 package -->
-<!-- Sat Aug 24 23:06:07 2013 -->
+<!-- Sun Aug 25 22:00:48 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataPieChartID2a6f5f730594 () {
+function gvisDataPieChartID42f154af31c9 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -86,15 +86,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartPieChartID2a6f5f730594() {
-  var data = gvisDataPieChartID2a6f5f730594();
+function drawChartPieChartID42f154af31c9() {
+  var data = gvisDataPieChartID42f154af31c9();
   var options = {};
 options["allowHtml"] = true;
 options["width"] =    400;
 options["height"] =    200;
 
      var chart = new google.visualization.PieChart(
-       document.getElementById('PieChartID2a6f5f730594')
+       document.getElementById('PieChartID42f154af31c9')
      );
      chart.draw(data,options);
     
@@ -118,9 +118,9 @@ options["height"] =    200;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartPieChartID2a6f5f730594);
+  callbacks.push(drawChartPieChartID42f154af31c9);
 })();
-function displayChartPieChartID2a6f5f730594() {
+function displayChartPieChartID42f154af31c9() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -144,11 +144,11 @@ function displayChartPieChartID2a6f5f730594() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID2a6f5f730594"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID42f154af31c9"></script>
  
 <!-- divChart -->
   
-<div id="PieChartID2a6f5f730594"
+<div id="PieChartID42f154af31c9"
   style="width: 400px; height: 200px;">
 </div>
 
@@ -172,15 +172,23 @@ head(Exports)
 ```
 
 
+
+```r
+Geo <- gvisGeoChart(Exports, locationvar = "Country", colorvar = "Profit", options = list(height = 300, 
+    width = 350))
+Tbl <- gvisTable(Exports, options = list(height = 300, width = 200))
+plot(gvisMerge(Geo, Tbl, horizontal = TRUE))
+```
+
 <!-- GeoChart generated in R 3.0.0 by googleVis 0.4.3 package -->
-<!-- Sat Aug 24 23:06:08 2013 -->
+<!-- Sun Aug 25 22:00:48 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataGeoChartID2a6f78736880 () {
+function gvisDataGeoChartID42f139edae8e () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -233,7 +241,7 @@ return(data);
 
 
 // jsData 
-function gvisDataTableID2a6f60d1e947 () {
+function gvisDataTableID42f1235f0a58 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -296,14 +304,14 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartGeoChartID2a6f78736880() {
-  var data = gvisDataGeoChartID2a6f78736880();
+function drawChartGeoChartID42f139edae8e() {
+  var data = gvisDataGeoChartID42f139edae8e();
   var options = {};
 options["width"] =    350;
 options["height"] =    300;
 
      var chart = new google.visualization.GeoChart(
-       document.getElementById('GeoChartID2a6f78736880')
+       document.getElementById('GeoChartID42f139edae8e')
      );
      chart.draw(data,options);
     
@@ -313,15 +321,15 @@ options["height"] =    300;
 
 
 // jsDrawChart
-function drawChartTableID2a6f60d1e947() {
-  var data = gvisDataTableID2a6f60d1e947();
+function drawChartTableID42f1235f0a58() {
+  var data = gvisDataTableID42f1235f0a58();
   var options = {};
 options["allowHtml"] = true;
 options["height"] =    300;
 options["width"] =    200;
 
      var chart = new google.visualization.Table(
-       document.getElementById('TableID2a6f60d1e947')
+       document.getElementById('TableID42f1235f0a58')
      );
      chart.draw(data,options);
     
@@ -345,9 +353,9 @@ options["width"] =    200;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartGeoChartID2a6f78736880);
+  callbacks.push(drawChartGeoChartID42f139edae8e);
 })();
-function displayChartGeoChartID2a6f78736880() {
+function displayChartGeoChartID42f139edae8e() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -384,9 +392,9 @@ function displayChartGeoChartID2a6f78736880() {
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartTableID2a6f60d1e947);
+  callbacks.push(drawChartTableID42f1235f0a58);
 })();
-function displayChartTableID2a6f60d1e947() {
+function displayChartTableID42f1235f0a58() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -410,11 +418,11 @@ function displayChartTableID2a6f60d1e947() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartGeoChartID2a6f78736880"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartGeoChartID42f139edae8e"></script>
 
 
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID2a6f60d1e947"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID42f1235f0a58"></script>
  
 <table border="0">
 <tr>
@@ -422,7 +430,7 @@ function displayChartTableID2a6f60d1e947() {
 
 <!-- divChart -->
   
-<div id="GeoChartID2a6f78736880"
+<div id="GeoChartID42f139edae8e"
   style="width: 350px; height: 300px;">
 </div>
 
@@ -431,7 +439,7 @@ function displayChartTableID2a6f60d1e947() {
 
 <!-- divChart -->
   
-<div id="TableID2a6f60d1e947"
+<div id="TableID42f1235f0a58"
   style="width: 200px; height: 300px;">
 </div>
 
@@ -469,14 +477,14 @@ plot(Scatter1)
 ```
 
 <!-- ScatterChart generated in R 3.0.0 by googleVis 0.4.3 package -->
-<!-- Sat Aug 24 23:06:08 2013 -->
+<!-- Sun Aug 25 22:00:49 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataScatterChartID2a6f328cfa87 () {
+function gvisDataScatterChartID42f17f07c151 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -548,32 +556,32 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartScatterChartID2a6f328cfa87() {
-  var data = gvisDataScatterChartID2a6f328cfa87();
+function drawChartScatterChartID42f17f07c151() {
+  var data = gvisDataScatterChartID42f17f07c151();
   var options = {};
 options["allowHtml"] = true;
 options["vAxis"] = {title:'weight (lbs)'};
 options["hAxis"] = {title:'height (in)'};
 
-    chartScatterChartID2a6f328cfa87 = new google.visualization.ChartWrapper({
+    chartScatterChartID42f17f07c151 = new google.visualization.ChartWrapper({
          dataTable: data,       
          chartType: 'ScatterChart',
-         containerId: 'ScatterChartID2a6f328cfa87',
+         containerId: 'ScatterChartID42f17f07c151',
          options: options
     });
-    chartScatterChartID2a6f328cfa87.draw();
+    chartScatterChartID42f17f07c151.draw();
     
 
 }
 
-  function openEditorScatterChartID2a6f328cfa87() {
+  function openEditorScatterChartID42f17f07c151() {
       var editor = new google.visualization.ChartEditor();
       google.visualization.events.addListener(editor, 'ok',
         function() { 
-          chartScatterChartID2a6f328cfa87 = editor.getChartWrapper();  
-          chartScatterChartID2a6f328cfa87.draw(document.getElementById('ScatterChartID2a6f328cfa87')); 
+          chartScatterChartID42f17f07c151 = editor.getChartWrapper();  
+          chartScatterChartID42f17f07c151.draw(document.getElementById('ScatterChartID42f17f07c151')); 
       }); 
-      editor.openDialog(chartScatterChartID2a6f328cfa87);
+      editor.openDialog(chartScatterChartID42f17f07c151);
   }
     
  
@@ -593,9 +601,9 @@ options["hAxis"] = {title:'height (in)'};
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartScatterChartID2a6f328cfa87);
+  callbacks.push(drawChartScatterChartID42f17f07c151);
 })();
-function displayChartScatterChartID2a6f328cfa87() {
+function displayChartScatterChartID42f17f07c151() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -619,11 +627,11 @@ function displayChartScatterChartID2a6f328cfa87() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartScatterChartID2a6f328cfa87"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartScatterChartID42f17f07c151"></script>
  
 <!-- divChart -->
-<input type='button' onclick='openEditorScatterChartID2a6f328cfa87()' value='edit'/>  
-<div id="ScatterChartID2a6f328cfa87"
+<input type='button' onclick='openEditorScatterChartID42f17f07c151()' value='edit'/>  
+<div id="ScatterChartID42f17f07c151"
   style="width: 600px; height: 500px;">
 </div>
 
@@ -654,14 +662,14 @@ plot(Intensity1)
 ```
 
 <!-- IntensityMap generated in R 3.0.0 by googleVis 0.4.3 package -->
-<!-- Sat Aug 24 23:06:08 2013 -->
+<!-- Sun Aug 25 22:00:49 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataIntensityMapID2a6f4593cefe () {
+function gvisDataIntensityMapID42f15624edfe () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -689,13 +697,13 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartIntensityMapID2a6f4593cefe() {
-  var data = gvisDataIntensityMapID2a6f4593cefe();
+function drawChartIntensityMapID42f15624edfe() {
+  var data = gvisDataIntensityMapID42f15624edfe();
   var options = {};
 options["width"] =    600;
 
      var chart = new google.visualization.IntensityMap(
-       document.getElementById('IntensityMapID2a6f4593cefe')
+       document.getElementById('IntensityMapID42f15624edfe')
      );
      chart.draw(data,options);
     
@@ -719,9 +727,9 @@ options["width"] =    600;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartIntensityMapID2a6f4593cefe);
+  callbacks.push(drawChartIntensityMapID42f15624edfe);
 })();
-function displayChartIntensityMapID2a6f4593cefe() {
+function displayChartIntensityMapID42f15624edfe() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -745,11 +753,11 @@ function displayChartIntensityMapID2a6f4593cefe() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartIntensityMapID2a6f4593cefe"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartIntensityMapID42f15624edfe"></script>
  
 <!-- divChart -->
   
-<div id="IntensityMapID2a6f4593cefe"
+<div id="IntensityMapID42f15624edfe"
   style="width: 600px; height: 500px;">
 </div>
 
@@ -770,14 +778,14 @@ plot(CC)
 ```
 
 <!-- ComboChart generated in R 3.0.0 by googleVis 0.4.3 package -->
-<!-- Sat Aug 24 23:06:08 2013 -->
+<!-- Sun Aug 25 22:00:49 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataComboChartID2a6f6afaa961 () {
+function gvisDataComboChartID42f11284eae1 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -820,8 +828,8 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartComboChartID2a6f6afaa961() {
-  var data = gvisDataComboChartID2a6f6afaa961();
+function drawChartComboChartID42f11284eae1() {
+  var data = gvisDataComboChartID42f11284eae1();
   var options = {};
 options["allowHtml"] = true;
 options["seriesType"] = "bars";
@@ -831,7 +839,7 @@ options["title"] = "City Popularity";
 options["series"] = {0: {type:"line"}};
 
      var chart = new google.visualization.ComboChart(
-       document.getElementById('ComboChartID2a6f6afaa961')
+       document.getElementById('ComboChartID42f11284eae1')
      );
      chart.draw(data,options);
     
@@ -855,9 +863,9 @@ options["series"] = {0: {type:"line"}};
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartComboChartID2a6f6afaa961);
+  callbacks.push(drawChartComboChartID42f11284eae1);
 })();
-function displayChartComboChartID2a6f6afaa961() {
+function displayChartComboChartID42f11284eae1() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -881,11 +889,11 @@ function displayChartComboChartID2a6f6afaa961() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartComboChartID2a6f6afaa961"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartComboChartID42f11284eae1"></script>
  
 <!-- divChart -->
   
-<div id="ComboChartID2a6f6afaa961"
+<div id="ComboChartID42f11284eae1"
   style="width: 450px; height: 300px;">
 </div>
 
