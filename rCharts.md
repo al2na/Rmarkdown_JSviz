@@ -1464,7 +1464,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.0.0 (2013-04-03)
+## R version 3.0.1 (2013-05-16)
 ## Platform: x86_64-apple-darwin10.8.0 (64-bit)
 ## 
 ## locale:
@@ -1474,11 +1474,11 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] rCharts_0.3.51 knitr_1.4.1   
+## [1] rCharts_0.3.52 knitr_1.4.1   
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] digest_0.6.3    evaluate_0.4.7  formatR_0.9     grid_3.0.0     
+##  [1] digest_0.6.3    evaluate_0.4.7  formatR_0.9     grid_3.0.1     
 ##  [5] lattice_0.20-15 plyr_1.8        RJSONIO_1.0-3   stringr_0.6.2  
-##  [9] tools_3.0.0     whisker_0.3-2   yaml_2.1.7
+##  [9] tools_3.0.1     whisker_0.3-2   yaml_2.1.7
 ```
 
